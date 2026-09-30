@@ -1,0 +1,46 @@
+# Core
+numpy
+pandas
+scikit-learn
+scipy
+
+# Deep Learning
+torch
+
+# XAI & Causal
+shap
+dowhy
+pgmpy
+
+# Geospatial
+folium
+geopandas
+osmnx
+shapely
+
+# Dashboard & Visualization
+streamlit
+streamlit-folium
+plotly
+matplotlib
+seaborn
+
+# Database
+sqlalchemy
+alembic
+
+# Backend
+fastapi
+uvicorn
+pydantic
+python-multipart
+httpx
+
+# System Monitoring
+psutil
+
+# Utils
+python-dotenv
+loguru
+joblib
+pyyaml

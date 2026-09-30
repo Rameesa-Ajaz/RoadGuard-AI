@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: traffic_api_pk
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./data/traffic.db
+      - DATA_MODE=mock
+      - LOG_LEVEL=INFO
+      - CORS_ORIGINS=http://localhost:8501
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    networks:
+      - traffic_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: traffic_dashboard_pk
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://api:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - traffic_network
+
+networks:
+  traffic_network:
+    driver: bridge
