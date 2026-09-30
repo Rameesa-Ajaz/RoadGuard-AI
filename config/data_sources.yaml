@@ -1,0 +1,66 @@
+sources:
+  lahore_traffic:
+    type: huggingface
+    name: HaajraMumtaz/LahoreTrafficData
+    description: "Historical traffic flow across Lahore junctions"
+    fields:
+      - origin_zone
+      - dest_zone
+      - road_type
+      - speed_limit_kmh
+      - num_lanes
+      - is_one_way
+      - distance_km
+      - road_curvature
+      - has_signal
+      - is_construction
+      - weather_condition
+      - time_slot
+      - day_type
+      - congestion_multiplier
+
+  road_surface:
+    type: hdx
+    url: "https://data.humdata.org/dataset/pakistan-road-surface-data"
+    fields:
+      - osm_id
+      - pred_class
+      - urban
+      - osm_surface_class
+      - predicted_length
+
+  accident_data:
+    type: compiled
+    description: "Compiled from Rescue 1122, provincial police, and media reports"
+    fields:
+      - province
+      - district
+      - total_accidents
+      - fatalities
+      - injuries
+      - year
+      - primary_cause
+      - vehicle_type
+
+  challan_data:
+    type: compiled
+    description: "E-challan statistics from provincial traffic police"
+    fields:
+      - city
+      - month
+      - year
+      - total_challans
+      - violation_type
+      - fine_amount
+
+  osm_pakistan:
+    type: osmnx
+    description: "OpenStreetMap road network for Pakistan"
+    fields:
+      - geometry
+      - name
+      - highway_type
+      - oneway
+      - maxspeed
+      - lanes
+      - surface
